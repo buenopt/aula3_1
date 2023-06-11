@@ -33,7 +33,7 @@ public class SomatoriaTest {
        //O método somaDeFatoriais() é executado com o array {3, 4} e retorna o resultado da soma dos fatoriais dos números 3 e 4.
         int resultado = somatoria.somaDeFatoriais(numeros);
 
-        // Assert
+        //Verificação do número de chamadas ao método fatorial() usando o Mockito:
         assertEquals(30, resultado);
         verify(mathOps, times(1)).fatorial(3);
         verify(mathOps, times(1)).fatorial(4);
@@ -41,29 +41,31 @@ public class SomatoriaTest {
 
     @Test
     public void testSomaDeFatoriais_Caso2() {
-        // Arrange
+        // Arranjo
         Somatoria somatoria = new Somatoria(mathOps);
         int[] numeros = {0, 1, 2, 3, 4};
 
-        // Configure o comportamento simulado do método fatorial(0)
+        //configura o retorno simulado do método fatorial(0) para o valor 0.
         when(mathOps.fatorial(0)).thenReturn(1);
 
-        // Configure o comportamento simulado do método fatorial(1)
+        // configura o retorno simulado do método fatorial(1) para o valor 1.
         when(mathOps.fatorial(1)).thenReturn(1);
 
-        // Configure o comportamento simulado do método fatorial(2)
+        // configura o retorno simulado do método fatorial(1) para o valor 2.
         when(mathOps.fatorial(2)).thenReturn(2);
 
-        // Configure o comportamento simulado do método fatorial(3)
+        // configura o retorno simulado do método fatorial(1) para o valor 6.
         when(mathOps.fatorial(3)).thenReturn(6);
 
-        // Configure o comportamento simulado do método fatorial(4)
+        // configura o retorno simulado do método fatorial(1) para o valor 24.
         when(mathOps.fatorial(4)).thenReturn(24);
 
-        // Act
+        // Ação
+        //Execução do método somaDeFatoriais() passando o array numeros como argumento: int resultado = somatoria.somaDeFatoriais(numeros);
+        //O método somaDeFatoriais() é executado com o array {0, 1, 2, 3, 4} e retorna o resultado da soma dos fatoriais dos números 0, 1, 2, 3 e 4.
         int resultado = somatoria.somaDeFatoriais(numeros);
 
-        // Assert
+        // Verificação cada número chamado
         assertEquals(34, resultado);
         verify(mathOps, times(1)).fatorial(0);
         verify(mathOps, times(1)).fatorial(1);
